@@ -1,0 +1,11 @@
+<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g5" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0f141a"/>
+      <stop offset="100%" stop-color="#293243"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#g5)"/>
+  <rect x="60" y="40" width="480" height="320" rx="18" fill="#253044"/>
+  <text x="300" y="210" text-anchor="middle" fill="#f5c26b" font-size="28" font-family="Segoe UI, Arial">Project 5</text>
+</svg>

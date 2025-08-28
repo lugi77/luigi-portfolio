@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luigi N. Llorando | Portfolio</title>
+  <style>
+    :root{
+      --bg:#f7f9fc;
+      --paper:#ffffff;
+      --text:#1f2a35;
+      --muted:#5b6b7a;
+      --accent:#1e3d59;         /* primary brand */
+      --accent-2:#f5c26b;       /* warm accent */
+      --line:#e7edf3;
+      --chip:#eef3f7;
+      --shadow:0 10px 30px rgba(30,61,89,.12);
+    }
+    /* Dark mode override */
+    .theme-dark{
+      --bg:#0f141a;
+      --paper:#121821;
+      --text:#e6edf3;
+      --muted:#9fb0bf;
+      --accent:#7bdff2;
+      --accent-2:#f5c26b;
+      --line:#263042;
+      --chip:#1b2330;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:
+      radial-gradient(1200px 600px at -10% -10%, rgba(245,194,107,.20), transparent 60%),
+      radial-gradient(800px 400px at 110% -20%, rgba(123,223,242,.18), transparent 60%),
+      var(--bg);
+      color:var(--text);font: 12pt/1.55 'Segoe UI', Arial, sans-serif;transition: background .3s ease,color .3s ease}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .resume{position:relative;max-width:900px;margin:40px auto;background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+    .resume::before{content:"";position:absolute;inset:-2px -2px auto -2px;height:8px;border-radius:16px 16px 0 0;background:linear-gradient(90deg,var(--accent),var(--accent-2),#7f9cf5,var(--accent));filter:saturate(1.1)}
+    .resume .inner{padding:28px}
+
+    /* Hero header */
+    .hero{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;background:linear-gradient(180deg, rgba(30,61,89,.06), transparent);border-radius:12px;padding:16px 16px 10px 16px;border:1px solid var(--line)}
+    .name{margin:0;font-size:30px;font-weight:900;color:var(--accent)}
+    .subtitle{margin:6px 0 10px 0;color:var(--muted);font-weight:600}
+    .contact{list-style:none;padding:0;margin:0;display:flex;gap:18px;flex-wrap:wrap}
+    .contact li{color:var(--muted)}
+    .avatar-lg{width:96px;height:96px;border-radius:50%;object-fit:cover;border:4px solid var(--paper);box-shadow:0 6px 16px rgba(0,0,0,.15);background:#ccd6e0}
+    .actions{display:flex;gap:8px;margin-top:8px;justify-content:flex-end}
+    .btn{cursor:pointer;appearance:none;border:1px solid var(--line);background:var(--chip);padding:8px 12px;border-radius:10px;font-weight:700;color:var(--text)}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:none;color:#fff}
+
+    section{margin:22px 0}
+    h2{font-size:13px;margin:0 0 8px 0;color:var(--accent);text-transform:uppercase;letter-spacing:.12em}
+    .section-body{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--paper);animation:fadeUp .5s ease both}
+
+    /* Experience */
+    .exp-item{position:relative;display:grid;grid-template-columns:1fr auto;gap:4px 16px;margin:10px 0;padding:10px 12px;border:1px dashed var(--line);border-radius:10px}
+    .exp-item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:10px 0 0 10px;background:linear-gradient(180deg,var(--accent),var(--accent-2))}
+    .role{font-weight:800}
+    .company{color:var(--muted)}
+    .dates{color:var(--muted);font-weight:600}
+    .exp-item ul{grid-column:1 / -1;margin:6px 0 0 18px}
+
+    /* Skills */
+  .skills{display:flex;flex-wrap:wrap;gap:10px}
+  .skill{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg,var(--chip),#fff);border:1px solid var(--line);padding:7px 12px;border-radius:999px;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,.04)}
+  .skill img{width:18px;height:18px;display:inline-block;filter:none}
+  .theme-dark .skill{background:linear-gradient(180deg,var(--chip),#161c25)}
+  .theme-dark .skill img{filter:invert(88%) sepia(4%) saturate(355%) hue-rotate(169deg) brightness(105%) contrast(95%)}
+
+    /* Projects */
+    .proj-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .proj{border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--paper);position:relative;overflow:hidden}
+    .proj::after{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-2));opacity:.7}
+    .proj strong{display:block;margin-bottom:4px}
+    .proj:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(30,61,89,.15)}
+    @media (max-width:700px){ .proj-list{grid-template-columns:1fr} }
+
+    /* Lists */
+    .list{margin:0;padding-left:18px}
+    .list li{margin:6px 0}
+
+    /* Animations */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+    @media (prefers-reduced-motion: reduce){ .section-body, .proj:hover{animation:none;transform:none} }
+
+    /* Print */
+    @media print{
+      body{background:#fff}
+      .resume{box-shadow:none;border:none;border-radius:0;margin:0}
+      .resume::before, .actions{display:none}
+      a{text-decoration:underline;color:#000}
+      .proj:hover{transform:none;box-shadow:none}
+    }
+    footer{max-width:900px;margin:16px auto 32px auto;color:var(--muted);text-align:center}
+  </style>
+</head>
+<body>
+  <div class="resume"><div class="inner">
+    <header class="hero">
+      <div class="header-left">
+        <h1 class="name">Luigi N. Llorando</h1>
+        <p class="subtitle">IT Professional | Full‑Stack Developer (Laravel) | System Support</p>
+        <ul class="contact">
+          <li>📞 09951777362</li>
+          <li>📧 <a href="mailto:luigillorando7@gmail.com">luigillorando7@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="header-right" style="text-align:right">
+        <img class="avatar-lg" src="images/profile-placeholder.svg" alt="Luigi photo"/>
+        <div class="actions">
+          <button id="themeToggle" class="btn" aria-label="Toggle theme">Toggle Theme</button>
+          <button id="printBtn" class="btn primary" aria-label="Save PDF">Save PDF</button>
+        </div>
+      </div>
+    </header>
+
+    <section id="summary">
+      <h2>Professional Summary</h2>
+      <div class="section-body">
+        Motivated IT graduate with experience in IT support, system administration, and full‑stack web development using PHP (Laravel) and MySQL. Skilled in troubleshooting, user assistance, and building maintainable web apps from UI/UX through backend integration. Passionate about reliability, security, and improving team workflows.
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Core Skills</h2>
+      <div class="section-body">
+        <div class="skills">
+          <span class="skill"><img src="images/icons/laravel.svg" alt="">Laravel</span>
+          <span class="skill"><img src="images/icons/php.svg" alt="">PHP</span>
+          <span class="skill"><img src="images/icons/mysql.svg" alt="">MySQL</span>
+          <span class="skill"><img src="images/icons/git.svg" alt="">Git / Version Control</span>
+          <span class="skill"><img src="images/icons/linux.svg" alt="">Linux Administration</span>
+          <span class="skill"><img src="images/icons/networking.svg" alt="">Networking</span>
+          <span class="skill"><img src="images/icons/troubleshoot.svg" alt="">Troubleshooting</span>
+          <span class="skill"><img src="images/icons/uiux.svg" alt="">UI/UX Design</span>
+          <span class="skill"><img src="images/icons/security.svg" alt="">System Security</span>
+          <span class="skill"><img src="images/icons/office.svg" alt="">Office 365</span>
+          <span class="skill"><img src="images/icons/remote.svg" alt="">Remote Support</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="section-body">
+        <div class="exp-item">
+          <div>
+            <div class="role">IT Support & Full‑Stack Developer (Intern)</div>
+            <div class="company">Department of Social Welfare and Development (DSWD)</div>
+          </div>
+          <div class="dates">Jul 2024 – Dec 2024</div>
+          <ul>
+            <li>Provided technical support across hardware, software, and networking.</li>
+            <li>Developed internal tools with Laravel & MySQL to improve processes.</li>
+            <li>Handled UI/UX design, backend integration, and routine maintenance.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="section-body">
+        <div class="proj-list">
+          <div class="proj">
+            <strong>Laravel Admin Tool</strong>
+            Streamlined data entry and audit workflows for internal teams. Tech: Laravel, MySQL, Blade.
+          </div>
+          <div class="proj">
+            <strong>Helpdesk Dashboard</strong>
+            Ticket triage and SLA tracking with role‑based access. Tech: Laravel, Bootstrap.
+          </div>
+          <div class="proj">
+            <strong>Inventory Tracker</strong>
+            Asset and stock monitoring with exportable reports. Tech: Laravel, MySQL.
+          </div>
+          <div class="proj">
+            <strong>Attendance System</strong>
+            Simple daily time record and summaries for staff. Tech: Laravel, Charts.js.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <div class="section-body">
+        <ul class="list">
+          <li><strong>Bachelor of Science in Information Technology</strong> (Major in Information Security) — University of Southeastern Philippines, 2020–2025</li>
+          <li><strong>STEM</strong> — Matanao National High School (Graduate with Honors), 2018–2020</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="certs">
+      <h2>Certifications</h2>
+      <div class="section-body">
+        <ul class="list">
+          <li>Intro to Cybersecurity — Cisco NetAcad (2023)</li>
+          <li>Digital Safety & Security Awareness — Cisco NetAcad (2025)</li>
+          <li>Networking Basics — Cisco NetAcad (2025)</li>
+          <li>Google IT Support Specialist — Coursera</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="section-body">
+        📞 09951777362 · 📧 <a href="mailto:luigillorando7@gmail.com">luigillorando7@gmail.com</a>
+      </div>
+    </section>
+  </div></div>
+
+  <footer>&copy; 2025 Luigi N. Llorando</footer>
+
+  <script>
+    (function(){
+      const $ = (id) => document.getElementById(id);
+      const themeBtn = $('themeToggle');
+      const printBtn = $('printBtn');
+      try{
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if(prefersDark) document.body.classList.add('theme-dark');
+      }catch(_){}
+      themeBtn && themeBtn.addEventListener('click', ()=>{
+        document.body.classList.toggle('theme-dark');
+      });
+      printBtn && printBtn.addEventListener('click', ()=> window.print());
+    })();
+  </script>
+</body>
+</html>
