@@ -36,6 +36,7 @@
       color:var(--text);font: 12pt/1.55 'Segoe UI', Arial, sans-serif;transition: background .3s ease,color .3s ease}
     a{color:var(--accent);text-decoration:none}
     a:hover{text-decoration:underline}
+  img{max-width:100%;height:auto}
 
     .resume{position:relative;max-width:900px;margin:40px auto;background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
     .resume::before{content:"";position:absolute;inset:-2px -2px auto -2px;height:8px;border-radius:16px 16px 0 0;background:linear-gradient(90deg,var(--accent),var(--accent-2),#7f9cf5,var(--accent));filter:saturate(1.1)}
@@ -83,6 +84,12 @@
     .list{margin:0;padding-left:18px}
     .list li{margin:6px 0}
 
+  /* Tech stack badges */
+  .stack{display:flex;flex-wrap:wrap;gap:10px}
+  .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:12px;background:linear-gradient(180deg,var(--chip),#fff);border:1px solid var(--line);font-weight:800;box-shadow:0 2px 6px rgba(0,0,0,.04)}
+  .badge img{width:18px;height:18px}
+  .theme-dark .badge{background:linear-gradient(180deg,var(--chip),#161c25)}
+
     /* Animations */
     @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
     @media (prefers-reduced-motion: reduce){ .section-body, .proj:hover{animation:none;transform:none} }
@@ -96,6 +103,31 @@
       .proj:hover{transform:none;box-shadow:none}
     }
     footer{max-width:900px;margin:16px auto 32px auto;color:var(--muted);text-align:center}
+    /* Mobile tweaks */
+    @media (max-width: 640px){
+      .resume{margin:16px auto;border-radius:14px}
+      .resume .inner{padding:16px}
+      .hero{grid-template-columns:1fr;gap:12px;text-align:left}
+      .header-right{order:-1;text-align:center!important}
+      .avatar-lg{width:112px;height:112px;display:block;margin:0 auto 8px auto}
+      .actions{justify-content:center;flex-wrap:wrap}
+      .btn{padding:10px 12px}
+      .name{font-size:24px}
+      .subtitle{font-size:.95rem}
+      section{margin:16px 0}
+      h2{font-size:12px}
+      .section-body{padding:12px}
+      .exp-item{grid-template-columns:1fr}
+      .dates{margin-top:2px}
+      .proj-list{grid-template-columns:1fr}
+      .skills{gap:8px}
+      .skill{font-weight:600}
+      .contact{gap:10px}
+    }
+    @media (max-width: 400px){
+      .actions .btn{width:100%}
+      .contact{flex-direction:column;gap:6px}
+    }
   </style>
 </head>
 <body>
@@ -121,7 +153,7 @@
     <section id="summary">
       <h2>Professional Summary</h2>
       <div class="section-body">
-        Motivated IT graduate with experience in IT support, system administration, and full‑stack web development using PHP (Laravel) and MySQL. Skilled in troubleshooting, user assistance, and building maintainable web apps from UI/UX through backend integration. Passionate about reliability, security, and improving team workflows.
+        Driven IT Specialist with hands-on experience in IT support, system administration, and full-stack web development using PHP (Laravel), MySQL, and modern front-end frameworks. Proficient in diagnosing and resolving technical issues, optimizing system performance, and delivering user-focused solutions. Experienced in designing and developing scalable, secure, and maintainable web applications from intuitive UI/UX to seamless backend integration. Passionate about leveraging technology to improve reliability, enhance security, and streamline team workflows.
       </div>
     </section>
 
@@ -167,21 +199,37 @@
       <div class="section-body">
         <div class="proj-list">
           <div class="proj">
-            <strong>Laravel Admin Tool</strong>
-            Streamlined data entry and audit workflows for internal teams. Tech: Laravel, MySQL, Blade.
+            <strong>DSWD DV Tracker</strong>
+            Internal web app to record and track disbursement vouchers (DV), statuses, and timelines with search and filtered views.
           </div>
           <div class="proj">
-            <strong>Helpdesk Dashboard</strong>
-            Ticket triage and SLA tracking with role‑based access. Tech: Laravel, Bootstrap.
+            <strong>Palitanan (E‑commerce Capstone)</strong>
+            Marketplace-style site for product listings, cart/checkout flow, and admin moderation for community trading.
           </div>
           <div class="proj">
-            <strong>Inventory Tracker</strong>
-            Asset and stock monitoring with exportable reports. Tech: Laravel, MySQL.
+            <strong>Library Book Management System</strong>
+            Catalog, borrowers, and lending/returns management with due dates and activity history.
           </div>
           <div class="proj">
-            <strong>Attendance System</strong>
-            Simple daily time record and summaries for staff. Tech: Laravel, Charts.js.
+            <strong>Student Profiling System for Indigenous Scholars</strong>
+            Student intake and profile management with eligibility and reporting, spearheaded by USeP CIC.
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack">
+      <h2>Tech Stack</h2>
+      <div class="section-body">
+        <div class="stack">
+          <span class="badge" title="Tailwind CSS"><img src="images/icons/tailwind.svg" alt="">Tailwind</span>
+          <span class="badge" title="Alpine.js"><img src="images/icons/alpine.svg" alt="">Alpine.js</span>
+          <span class="badge" title="Laravel Livewire"><img src="images/icons/livewire.svg" alt="">Livewire</span>
+          <span class="badge" title="Laravel"><img src="images/icons/laravel.svg" alt="">Laravel</span>
+          <span class="badge" title="SQLite"><img src="images/icons/sqlite.svg" alt="">SQLite</span>
+          <span class="badge" title="Git"><img src="images/icons/git.svg" alt="">Git</span>
+          <span class="badge" title="Python Flask"><img src="images/icons/flask.svg" alt="">Flask</span>
+          <span class="badge" title="htmx"><img src="images/icons/htmx.svg" alt="">htmx</span>
         </div>
       </div>
     </section>
